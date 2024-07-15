@@ -19,14 +19,22 @@ const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: "black",
-        tabBarActiveBackgroundColor: "yellow",
-        tabBarInactiveTintColor: "yellow",
-        tabBarInactiveBackgroundColor: "black",
-      }}
-    >
+        initialRouteName="Home"
+        screenOptions={{
+          tabBarActiveTintColor: 'black',
+          tabBarActiveBackgroundColor: 'yellow',
+          tabBarInactiveTintColor: 'yellow',
+          tabBarInactiveBackgroundColor: 'black', 
+          headerStyle: {
+            backgroundColor: '#13161c', 
+          },
+          headerTintColor: 'yellow',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+      
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -37,7 +45,7 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Browser"
+        name="Star Wars Browser"
         component={StarwarsScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
