@@ -26,22 +26,25 @@ const FetchAPI = ({searchQuery}) => {
         setLoading(false);
       }
     };
-  
 
     fetchData();
   }, []);
   
-useEffect(() => {
-  if(searchQuery) {
-    const filteredCharacters = characters.filter(character => 
-      character.name.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    setFilteredCharacters(filteredData);
-  } else {
-    setFilteredCharacters(characters); //show all of them if there is no searching
-  }
+  useEffect(() => {
+    const filterCharacters = () => {
+      if (!searchQuery) {
+        setFilteredCharacters(characters);
+      } else {
+        const filteredData = characters.filter(character =>
+          character.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredCharacters(filteredData);
+      }
+    };
 
-}, [characters,searchQuery])
+    filterCharacters();
+  }, [characters, searchQuery]);
+
 
 const renderCharacter = ({item}) => {
 <View style={styles.characterContainer}>
@@ -57,7 +60,7 @@ const renderCharacter = ({item}) => {
       ): (
         <FlatList 
           data={filteredCharacters}
-          keyExtractor={({item, index}) => index.toString()}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={renderCharacter}
           
           

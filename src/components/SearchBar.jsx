@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, Button, StyleSheet } from 'react-native'
+import { View, TextInput, Text, StyleSheet, Pressable } from 'react-native'
 
 
 
@@ -19,15 +19,19 @@ const handleSearch = () => {
 
 
   return (
-<View style={StyleSheet.container}>
+<View style={styles.container}>
     <TextInput
-    style={StyleSheet.inputBarra}
+    style={styles.inputBarra}
     placeholder='Search a Character'
     value={searchQuery}
     onChangeText={text => setSearchQuery(text)}
     
     />
-    <Button title='Search' onPress={handleSearch}/>
+       <View style={styles.buttonContainer}>
+    <Pressable style={styles.buttonSearch} onPress={handleSearch}>
+    <Text style={styles.buttonText}>Search</Text>
+    </Pressable>
+    </View>
 </View>
   )
 }
@@ -40,16 +44,33 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems:'center',
         marginBottom:16,
-    
     },
     inputBarra: {
         flex: 1,
-        height: 40,
+        height: 80,
         borderColor: 'gray',
-        borderWidth: 1,
+        borderWidth:15,
+        borderRadius:10,
         paddingHorizontal: 8,
-        marginRight: 8
+        marginRight: 8,
+        
     },
+    buttonContainer:{
+        marginVertical: 10,
+    },
+    buttonSearch: {
+        backgroundColor: "black",
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        alignItems: "center",
+  },
+  buttonText:{
+    color: "yellow",
+    fontSize: 16,
+    fontWeight:'bold'
+  }
+      
 })
 
 
